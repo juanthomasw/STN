@@ -5,7 +5,6 @@ import sys
 import os
 sys.path.append(os.getcwd())
 from PIL import Image, ImageDraw, ImageFont
-from model.LPRNET import LPRNet, CHARS
 from model.STN import STNet
 import numpy as np
 import argparse
