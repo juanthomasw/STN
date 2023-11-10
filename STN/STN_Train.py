@@ -15,7 +15,7 @@ import time
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='LPR Training')
-    parser.add_argument('--img_size', default=(344, 108), help='the image size')
+    parser.add_argument('--img_size', default=(94, 24), help='the image size')
     parser.add_argument('--img_dirs_train', default="./data/train", help='the training images path')
     parser.add_argument('--img_dirs_val', default="./data/validation", help='the validation images path')
     parser.add_argument('--dropout_rate', default=0.5, help='dropout rate.')
