@@ -37,9 +37,9 @@ if __name__ == '__main__':
     
     since = time.time()
     image = cv2.imread(args.image)
-    im = cv2.resize(image, (94, 24), interpolation=cv2.INTER_CUBIC)
+    im = cv2.resize(image, (564, 144), interpolation=cv2.INTER_CUBIC)
     im = (np.transpose(np.float32(im), (2, 0, 1)) - 127.5)*0.0078125
-    data = torch.from_numpy(im).float().unsqueeze(0).to(device)  # torch.Size([1, 3, 24, 94]) 
+    data = torch.from_numpy(im).float().unsqueeze(0).to(device)  # torch.Size([1, 3, 24*6, 94*6]) 
     transfer = STN(data)
 
     print("model inference in {:2.3f} seconds".format(time.time() - since))
