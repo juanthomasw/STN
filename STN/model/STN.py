@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Jul  8 13:18:36 2019
-
-@author: xingyu
-"""
 
 import torch.nn as nn
 import torch
@@ -35,8 +30,10 @@ class STNet(nn.Module):
         self.fc_loc[2].bias.data.copy_(torch.tensor([1,0,0,0,1,0], dtype=torch.float))
         
     def forward(self, x):
+
+        x_resized = F.interpolate(x, size=(24, 94), mode='bilinear', align_corners=False)
         
-        xs = self.localization(x)
+        xs = self.localization(x_resized)
         xs = xs.view(-1, 32*14*2)
         theta = self.fc_loc(xs)
         theta = theta.view(-1,2,3)
@@ -51,6 +48,6 @@ if __name__ == "__main__":
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model = STNet().to(device)
     
-    input = torch.Tensor(2, 3, 24, 94).to(device)
+    input = torch.Tensor(2, 3, 144, 564).to(device)
     output = model(input)
     print('output shape is', output.shape)
