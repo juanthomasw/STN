@@ -48,6 +48,6 @@ if __name__ == "__main__":
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model = STNet().to(device)
     
-    input = torch.Tensor(2, 3, 144, 564).to(device)
+    input = torch.Tensor(2, 3, 189, 602).to(device)
     output = model(input)
     print('output shape is', output.shape)
